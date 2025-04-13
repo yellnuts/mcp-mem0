@@ -1,4 +1,4 @@
-# MCP-Mem0: Long-Term Memory for AI Agents
+<h1 align="center">MCP-Mem0: Long-Term Memory for AI Agents</h1>
 
 <p align="center">
   <img src="public/Mem0AndMCP.png" alt="Mem0 and MCP Integration" width="600">
