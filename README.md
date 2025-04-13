@@ -1,6 +1,8 @@
 # MCP-Mem0: Long-Term Memory for AI Agents
 
-![Mem0 and MCP Integration](public/Mem0AndMCP.png)
+<p align="center">
+  <img src="public/Mem0AndMCP.png" alt="Mem0 and MCP Integration" width="600">
+</p>
 
 A template implementation of the [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server integrated with [Mem0](https://mem0.ai) for providing AI agents with persistent memory capabilities.
 
